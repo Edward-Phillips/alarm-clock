@@ -4,17 +4,18 @@ import useViewModel from '@/viewModels/useViewModel'
 import { observer } from 'mobx-react-lite'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import { StyleSheet } from 'react-native'
 
 
 export default observer(function timeScreen ()  {
   const viewModel = useViewModel(timeScreenVM)
 
-  const { formattedTime } = viewModel
+  const { formattedTime, clickCount, incrementClickCount } = viewModel
 
   return <View style={styles.container}>
     <Text style={styles.title}>The time is currently: {formattedTime}</Text>
+    <Button onPress={incrementClickCount} title={`You have clicked this button: ${clickCount} times`}/>
   </View>
 })
 
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
   },
   title: {
     fontSize: 20,

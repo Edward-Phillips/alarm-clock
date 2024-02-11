@@ -1,28 +1,28 @@
-import { computed, makeAutoObservable, makeObservable, observable, reaction, runInAction } from 'mobx'
+import { computed, makeAutoObservable, observable, runInAction } from 'mobx'
 import moment  from 'moment'
 
 export default class timeScreenVM {
 
   @observable currentTime = moment()
+  @observable clickCount = 0
+  interval: NodeJS.Timeout
 
   constructor() {
-    makeObservable(this);
+    makeAutoObservable(this);
+  
+    this.interval = setInterval(() => {
+      runInAction(() => {
+        this.currentTime = moment();
+      });
+    }, 1000);
+  }
+  
+  dispose() {
+    clearInterval(this.interval);
+  }
 
-    reaction(
-      () => this.currentTime,
-      () => {
-        const interval = setInterval(() => {
-          // Wrapping the state update in runInAction
-          runInAction(() => {
-            this.currentTime = moment()
-          });
-        }, 1000);
-        return () => clearInterval(interval); // Cleanup on reaction disposal
-      },
-      {
-        fireImmediately: true,
-      }
-    );
+  incrementClickCount = () => {
+    this.clickCount ++ 
   }
 
 
