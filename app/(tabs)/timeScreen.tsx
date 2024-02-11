@@ -11,7 +11,11 @@ import { StyleSheet } from 'react-native'
 export default observer(function timeScreen ()  {
   const viewModel = useViewModel(timeScreenVM)
 
-  const { formattedTime, clickCount, incrementClickCount } = viewModel
+  const { formattedTime, clickCount, incrementClickCount, dispose } = viewModel
+
+  useEffect(() => {
+    return () => dispose()
+  }, [viewModel])
 
   return <View style={styles.container}>
     <Text style={styles.title}>The time is currently: {formattedTime}</Text>
