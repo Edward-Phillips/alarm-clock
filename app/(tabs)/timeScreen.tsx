@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     backgroundColor: 'red',
     color: 'white',
+    padding: 6,
   },
   separator: {
     marginVertical: 30,
