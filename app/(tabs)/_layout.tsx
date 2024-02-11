@@ -54,6 +54,13 @@ export default function TabLayout() {
           tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
         }}
       />
+      <Tabs.Screen
+        name='timeScreen'
+        options={{
+          title: 'TIME SCREEN',
+          tabBarIcon: ({color}) => <TabBarIcon name='times' color={color} />
+        }}
+      />
     </Tabs>
   );
 }
