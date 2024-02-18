@@ -14,11 +14,16 @@ export default observer(function timeScreen ()  {
   const viewModel = useViewModel(timeScreenVM)
 
   const {
-    setAlarmTime,
-    showTimePicker,
-    toggleTimePicker,
     alarmDate,
+    showTimePicker,
+    dispose,
+    setAlarmTime,
+    toggleTimePicker,
   } = viewModel
+
+  useEffect(() => {
+    return () => dispose()
+  }, [viewModel])
 
   const handleDateChange = (event: DateTimePickerEvent, date?: Date) => {
     const { type } = event
