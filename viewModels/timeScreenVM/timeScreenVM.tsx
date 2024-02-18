@@ -4,6 +4,9 @@ import moment  from 'moment'
 export default class timeScreenVM {
 
   @observable currentTime = moment()
+  @observable alarmTime = moment()
+  @observable showTimePicker = false
+  @observable alarmEnabled = false
   @observable clickCount = 0
   interval: NodeJS.Timeout
 
@@ -25,6 +28,18 @@ export default class timeScreenVM {
     this.clickCount ++ 
   }
 
+  toggleTimePicker = () => {
+    this.showTimePicker = !this.showTimePicker
+  }
+
+  @computed get alarmDate () {
+    return this.alarmTime.toDate()
+  }
+
+
+  setAlarmTime = (alarmDate: Date) => {
+    this.alarmTime = moment(alarmDate)
+  }
 
   @computed get formattedTime () {
     return this.currentTime.format('HH-mm-ss')
