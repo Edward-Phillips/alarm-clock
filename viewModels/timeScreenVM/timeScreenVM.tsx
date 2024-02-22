@@ -30,4 +30,8 @@ export default class timeScreenVM {
   @computed get formattedTime () {
     return this.currentTime.format('HH-mm-ss')
   }
+
+  toggleAlarmEnabled() {
+    this.alarmEnabled = !this.alarmEnabled
+  }
 }
