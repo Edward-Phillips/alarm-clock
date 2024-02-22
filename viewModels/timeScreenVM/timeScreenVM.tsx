@@ -8,6 +8,7 @@ export default class timeScreenVM {
   @observable showTimePicker = false
   @observable alarmEnabled = false
   @observable clickCount = 0
+  @observable alarmEnabled = false
   interval: NodeJS.Timeout
 
   constructor() {
@@ -43,5 +44,9 @@ export default class timeScreenVM {
 
   @computed get formattedTime () {
     return this.currentTime.format('HH-mm-ss')
+  }
+
+  toggleAlarmEnabled() {
+    this.alarmEnabled = !this.alarmEnabled
   }
 }
