@@ -5,6 +5,7 @@ export default class timeScreenVM {
 
   @observable currentTime = moment()
   @observable clickCount = 0
+  @observable alarmEnabled = false
   interval: NodeJS.Timeout
 
   constructor() {
