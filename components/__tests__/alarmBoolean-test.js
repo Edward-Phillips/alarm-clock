@@ -11,8 +11,14 @@ it('returns false if no alarm set', () => {
 
 })
 
-it('can toggle alarm status on', () => {
-    expect(timescreen.toggleAlarmEnabled().alarmEnabled).toEqual(true)
+it('can toggle alarm status on and off', () => {
+    timescreen.toggleAlarmEnabled()
+
+    expect(timescreen.alarmEnabled).toEqual(true)
+
+    timescreen.toggleAlarmEnabled()
+
+    expect(timescreen.alarmEnabled).toEqual(false)
 
     timescreen.dispose()
 })
