@@ -1,5 +1,6 @@
 import { computed, makeAutoObservable, observable, runInAction } from 'mobx'
 import moment  from 'moment'
+import { timechecker } from '../../helpers/timechecker'
 
 export default class timeScreenVM {
 
@@ -8,7 +9,6 @@ export default class timeScreenVM {
   @observable showTimePicker = false
   @observable alarmEnabled = false
   @observable clickCount = 0
-  @observable alarmEnabled = false
   interval: NodeJS.Timeout
 
   constructor() {
@@ -48,5 +48,10 @@ export default class timeScreenVM {
 
   toggleAlarmEnabled() {
     this.alarmEnabled = !this.alarmEnabled
+  }
+
+  @computed get alarmTriggered (){
+    const timesMatch = timechecker(this.currentTime, this.alarmTime)
+    return timesMatch && this.alarmEnabled
   }
 }
