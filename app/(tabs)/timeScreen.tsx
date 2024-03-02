@@ -1,13 +1,12 @@
-
-import timeScreenVM from '@/viewModels/timeScreenVM/timeScreenVM'
-import useViewModel from '@/viewModels/useViewModel'
 import { observer } from 'mobx-react-lite'
 import moment from 'moment'
 import { useEffect, useState } from 'react'
 import { View, Button } from 'react-native'
 import { StyleSheet } from 'react-native'
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
-import { FormattedTimeDisplay } from '@/components/FormattedTimeDisplay'
+import { FormattedTimeDisplay } from '../../components/FormattedTimeDisplay'
+import useViewModel from '../../viewModels/useViewModel'
+import timeScreenVM from '../../viewModels/timeScreenVM/timeScreenVM'
 
 
 export default observer(function timeScreen ()  {
@@ -19,6 +18,8 @@ export default observer(function timeScreen ()  {
     dispose,
     setAlarmTime,
     toggleTimePicker,
+    alarmTriggered,
+    toggleAlarmEnabled,
   } = viewModel
 
   useEffect(() => {
@@ -41,6 +42,10 @@ export default observer(function timeScreen ()  {
       value={alarmDate}
       onChange={handleDateChange}
     />}
+    {alarmTriggered && <View> 
+      <Button onPress={toggleAlarmEnabled} title={'Turn alarm off'}/>
+    </View>
+    }
   </View>
 })
 

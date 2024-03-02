@@ -40,13 +40,14 @@ export default class timeScreenVM {
 
   setAlarmTime = (alarmDate: Date) => {
     this.alarmTime = moment(alarmDate)
+    this.alarmEnabled = true
   }
 
   @computed get formattedTime () {
     return this.currentTime.format('HH-mm-ss')
   }
 
-  toggleAlarmEnabled() {
+  toggleAlarmEnabled = () => {
     this.alarmEnabled = !this.alarmEnabled
   }
 
